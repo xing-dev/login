@@ -61,23 +61,23 @@
         }
       },
       login: function () {//登录
-        // var vm = this;
-        // if(vm.check('phone',vm.phone)&&vm.code&&vm.check('pwd',vm.password)){
-        //   vm.$axios({
-        //     method:'post',
-        //     url:'/mock/5b2385e3debe3c5977248a16/wscn/submit',
-        //     data:{
-        //       phone:vm.phone,
-        //       captcha:vm.code,
-        //       // password:vm.password
-        //     }
-        //   }).then(function (res) {
-        //     console.log(res)
-        //     alert(res.data.messgae);//接口返回的字段名拼写错误
-        //   })
-        // }else{
-        //   alert('请确保表单填写完成')
-        // }
+        var vm = this;
+        if(vm.check('phone',vm.phone)&&vm.code&&vm.check('pwd',vm.password)){
+          vm.$axios({
+            method:'post',
+            url:'/mock/5b2385e3debe3c5977248a16/wscn/submit',
+            data:{
+              phone:vm.phone,
+              captcha:vm.code,
+              // password:vm.password
+            }
+          }).then(function (res) {
+            console.log(res)
+            alert(res.data.messgae);//接口返回的字段名拼写错误
+          })
+        }else{
+          alert('请确保表单填写完成')
+        }
 
       }
     }
