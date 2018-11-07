@@ -1,6 +1,7 @@
 <template>
   <div id="index">
     <Login></Login>
+    <p>{{msg}}</p>
     <router-view/>
   </div>
 </template>
@@ -11,6 +12,7 @@
     name: 'index',
     data() {
       return {
+        msg:'1111'
       }
     },
     mounted(){
@@ -21,5 +23,5 @@
   }
 </script>
 <style lang="less">
-  @import "../assets/css/login";
+  @import "../assets/css/index";
 </style>

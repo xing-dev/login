@@ -12,7 +12,7 @@
     </div>
     <div class="code">
       <input placeholder="请输入验证码" maxlength="4" v-model="code"/>
-      <button class="btn" @click="getCode" :class="{'sended':sended}" :disabled="sended">{{sended?('重发验证码'+time):'点击获取验证码'}}</button>
+      <button class="btn" @click="getCode" :class="{'sended':sended}" :disabled="sended">{{sended?('重发验证码'+time+'s'):'点击获取验证码'}}</button>
     </div>
     <div class="password">
       <input placeholder="密码(不少于6位)" v-model="password"/>
@@ -60,24 +60,24 @@
           alert('填写正确的手机号')
         }
       },
-      login: function () {
-        var vm = this;
-        if(vm.check('phone',vm.phone)&&vm.code&&vm.check('pwd',vm.password)){
-          vm.$axios({
-            method:'post',
-            url:'/mock/5b2385e3debe3c5977248a16/wscn/submit',
-            params:{
-              phone:vm.phone,
-              captcha:vm.code,
-              password:vm.password
-            }
-          }).then(function (res) {
-            console.log(res)
-            alert(res.data.messgae);//接口返回的字段名拼写错误
-          })
-        }else{
-          alert('请确保表单填写完成')
-        }
+      login: function () {//登录
+        // var vm = this;
+        // if(vm.check('phone',vm.phone)&&vm.code&&vm.check('pwd',vm.password)){
+        //   vm.$axios({
+        //     method:'post',
+        //     url:'/mock/5b2385e3debe3c5977248a16/wscn/submit',
+        //     data:{
+        //       phone:vm.phone,
+        //       captcha:vm.code,
+        //       // password:vm.password
+        //     }
+        //   }).then(function (res) {
+        //     console.log(res)
+        //     alert(res.data.messgae);//接口返回的字段名拼写错误
+        //   })
+        // }else{
+        //   alert('请确保表单填写完成')
+        // }
 
       }
     }
