@@ -1,6 +1,6 @@
 <template>
   <div id="index">
-    <Login></Login>
+    <Login :txt="txt"  @message="handleMessage"></Login>
     <p>{{msg}}</p>
     <router-view/>
   </div>
@@ -12,10 +12,15 @@
     name: 'index',
     data() {
       return {
-        msg:'1111'
+        msg:'',
+        txt:'登录'
       }
     },
-    mounted(){
+    methods: {
+      handleMessage(data) {
+        var vm=this;
+        vm.msg=data;
+      }
     },
     components:{
       Login

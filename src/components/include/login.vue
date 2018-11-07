@@ -8,16 +8,16 @@
     <div class="phone">
       <a class="tip">手机号</a>
       <a class="tip1">+86</a>
-      <input placeholder="请输入手机号" maxlength="11" v-model="phone"/>
+      <input placeholder="请输入手机号" maxlength="11" v-model="phone" type="text"/>
     </div>
     <div class="code">
-      <input placeholder="请输入验证码" maxlength="4" v-model="code"/>
+      <input placeholder="请输入验证码" maxlength="4" v-model="code" type="text"/>
       <button class="btn" @click="getCode" :class="{'sended':sended}" :disabled="sended">{{sended?('重发验证码'+time+'s'):'点击获取验证码'}}</button>
     </div>
     <div class="password">
-      <input placeholder="密码(不少于6位)" v-model="password"/>
+      <input placeholder="密码(不少于6位)" v-model="password" type="password"/>
     </div>
-    <button class="login" @click="login">登录</button>
+    <button class="login" @click="login">{{txt}}</button>
   </div>
 </template>
 
@@ -26,6 +26,12 @@
   export default {
     name: "login",
     mixins:[_public],
+    props:{
+      txt:{
+        type: String,
+        default: ''
+      },
+    },
     data() {
       return {
         phone: '',
@@ -36,10 +42,9 @@
       }
     },
     methods: {
-      getCode: function () {//获取验证码
+      getCode() {//获取验证码
         var vm = this;
         if(vm.check('phone',vm.phone)){
-          console.log(vm.phone)
           vm.$axios.get('/mock/5b2385e3debe3c5977248a16/wscn/captcha?phone='+vm.phone).then(function (res) {
             if(res.code==200){
               vm.code=res.data.captcha;
@@ -60,7 +65,7 @@
           alert('填写正确的手机号')
         }
       },
-      login: function () {//登录
+      login() {//登录
         var vm = this;
         if(vm.check('phone',vm.phone)&&vm.code&&vm.check('pwd',vm.password)){
           vm.$axios({
@@ -72,13 +77,11 @@
               // password:vm.password
             }
           }).then(function (res) {
-            console.log(res)
-            alert(res.data.messgae);//接口返回的字段名拼写错误
+            vm.$emit("message",res.data.messgae);
           })
         }else{
           alert('请确保表单填写完成')
         }
-
       }
     }
   }
