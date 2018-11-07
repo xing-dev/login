@@ -1,4 +1,4 @@
-# wutiao-activity
+# test
 
 > A Vue.js project
 
