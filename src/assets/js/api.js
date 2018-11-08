@@ -10,9 +10,6 @@ axios.interceptors.response.use(function (response) {
   alert('网络出错');
 });
 axios.interceptors.request.use(config => {
-  // if(config.method=='post'){
-  //   config.data = Qs.stringify(config.data)
-  // }
   return config;
 });
 export default axios
